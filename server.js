@@ -18,12 +18,27 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
-app.get('/new-post', function(req, res) {
-    res.render('new');
+
+app.get('/newRecipe', function(req, res) {
+    res.render('newRecipe');
+});
+
+app.get('/database', function(req, res) {
+    res.render('allData');
+});
+
+app.get('/personal', function(req, res) {
+    res.render('personalPage');
+});
+app.get('/search', function(req, res) {
+    res.render('search');
+});
+app.get('/users', function(req, res) {
+    res.render('users');
 });
 
 app.get('/posts/:id', function(req, res) {
-    res.render('post');
+    res.render('singleRecipe');
 });
 
 var PORT = process.env.PORT || 8080;

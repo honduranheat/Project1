@@ -1,54 +1,55 @@
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="container">
-            <div class = "navbar-brand">
-    <a href = "../public/index.html" class ="navbar-item">
-                <span class="icon is-large">
-                        <i class="fas fa-lg fa-utensils"></i>
-                    </span>
-                    <h1 class="title">
-                        RecipeMe
-                    </h1>
-                </a>
-            </div>
-            <p class = "navbar-item">
-                <a class="button level"  href="../public/indexLogin.html">
-                    <span class="icon">
-                        <i class="fas fa-search"></i>
-                    </span>
-                    &nbsp; Search the Database
-                </a>
-            </p>
-            <p class = "navbar-item">
-                <a class="button level"  href="../public/dbdisplay.html">
-                    <span class="icon">
-                        <i class="fas fa-book"></i>
-                    </span>
-                    &nbsp; View Recipe Database
-                </a>
-            </p>
-            <p class = "navbar-item">
-                <a class="button level"  href="../public/users.html">
-                    <span class="icon">
-                        <i class="fas fa-users"></i>
-                    </span>
-                    &nbsp; View Our Users
-                </a>
-            </p>
-            <p class = "navbar-item">
-                <a class="button level"  href="../public/dbdisplay.html">
-                    <span class="icon">
-                        <i class="fas fa-plus-circle"></i>
-                    </span>
-                    &nbsp; Add a Recipe
-                </a>
-            </p>
-            <p class = "level navbar-item">
-                <a class="button level"  href="../public/savedPage.html">
-                    <span class="icon">
-                        <i class="fas fa-sign-in-alt"></i>
-                    </span>
-                    &nbsp; Your Personal Home Page
-                </a>
-            </p>
-        </div>
-    </nav>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class = "container">
+        <div class="navbar-burger burger" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class = "navbar-brand">
+        <a href = "/" class ="navbar-item">
+        <span class="icon is-large">
+            <i class="fas fa-lg fa-utensils"></i>
+        </span>
+        <h1 class="title has-text-centered">
+            RecipeMe
+        </h1>
+        </a>
+    </div>
+    <div  class="navbar-menu">
+        {{!-- <div class=" navbar-start"> --}}
+            <a class="navbar-item"  href="/search">
+                <span class="icon">
+                    <i class="fas fa-search"></i>
+                </span>
+                &nbsp; Search for a Recipe
+            </a>
+        {{!-- </div> --}}
+        <a class="navbar-item"  href="/database">
+            <span class="icon">
+                <i class="fas fa-book"></i>
+            </span>
+            &nbsp; Recipe Database
+        </a>
+        <a class="navbar-item"  href="/users">
+            <span class="icon">
+                <i class="fas fa-users"></i>
+            </span>
+            &nbsp; View Our Users
+        </a>
+        <a class="navbar-item"  href="/newRecipe">
+            <span class="icon">
+                <i class="fas fa-plus-circle"></i>
+            </span>
+            &nbsp; Add a Recipe
+        </a>
+        {{!-- <div class = "navbar-end"> --}}
+        <a class="navbar-item"  href="/personal">
+            <span class="icon">
+                <i class="fas fa-home"></i>
+            </span>
+            &nbsp; Personal Home
+            </a>
+        {{!-- </div> --}}
+    </div>
+    </div>
+</nav>

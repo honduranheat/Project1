@@ -1,0 +1,61 @@
+<nav class="navbar container" role="navigation" aria-label="main navigation">
+    <div class="navbar-burger burger" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class = "navbar-brand">
+        <a href = ".../../index.handlebars" class ="navbar-item">
+        <span class="icon is-large">
+            <i class="fas fa-lg fa-utensils"></i>
+        </span>
+        <h1 class="title">
+            RecipeMe
+        </h1>
+        </a>
+    </div>
+    <div  class="navbar-menu">
+        {{!-- <div class=" navbar-start">
+            <a class="navbar-item"  href="/search">
+                <span class="icon">
+                    <i class="fas fa-search"></i>
+                </span>
+                &nbsp; Search the Recipe Database
+            </a>
+        </div> --}}
+        <div class = "navbar-item">
+            <a class="button level"  href="/database" disabled>
+                <span class="icon">
+                    <i class="fas fa-book"></i>
+                </span>
+                &nbsp; View Recipe Database
+            </a>
+        </div>
+            {{!-- <div class = "navbar-end"> --}}
+                <div class = "navbar-item">
+                    <a class="button level"  href="/newRecipe" disabled>
+                    <span class="icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </span>
+                    &nbsp; Add a Recipe
+                </a>
+            {{!-- </div> --}}
+            </div>
+            {{!-- <p class = "navbar-menu navbar-item">
+                <a class="button level"  href="../../personalPage.handlebars" disabled>
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                    &nbsp; Your Personal Home Page
+                </a>
+            </p>
+            <p class = "navbar-menu navbar-item">
+                <a class="button level"  href="../../personalPage.handlebars" disabled>
+                    <span class="icon">
+                <i class="fas fa-users"></i>
+            </span>
+            &nbsp; View Our Users
+                </a>
+            </p>  --}}
+        </div>
+    </nav>
