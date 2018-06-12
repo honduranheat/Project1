@@ -36,14 +36,42 @@
 
     <button type="submit">Submit Post</button>
 </form> --}}
-
-    {{!-- navbar navpart --}}
+<div class = "container">
+    {{> navbar/navpart}}
+</div>
 <section class="section">
     <div class="container">
+            <div class="tile is-ancestor">
+                <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-info">
+                    <div class="content">
+                        <p class="title has-text-centered">
+                            Recipe of the Day
+                        </p>
+                        {{!-- <p class="subtitle">
+                            Rating?
+                        </p> --}}
+                        <div class="content box">
+                        </div>
+                    </div>
+                </article>
+                <article class="tile is-child notification is-success">
+                    <div class="content">
+                        <p class="title has-text-centered">
+                            Top Contributers
+                        </p>
+                        {{!-- <p class="subtitle">
+                            OR Reviews ????
+                        </p> --}}
+                        <div class="content box">
+                        </div>
+                    </div>
+                </article>
+            </div> <!-- contains login and extra box - column beside search-->
             <div class="tile is-vertical is-8">
-                    <div class="tile is-parent">
-                        <article class="tile is-child notification is-danger">
-                            <div id="search">
+                <div class="tile is-parent">
+                    <article class="tile notification is-danger">
+                            <div id="content">
                                 <p class="title has-text-centered">
                                     Add a New Recipe
                                 </p>
@@ -203,7 +231,9 @@
                                     </div> <!-- end dietary restrictions-->
                                 </div> <!--end content-->
                             </div> <!-- end search id-->
-                        </article> <!-- end red tile-->
+                        </article> <!-- end add new tile-->
+                        </div>
+                    </div>
                         <div class="tile is-parent is-vertical">
                             <!-- <article class="tile is-child notification is-primary">
                                 <p class="title has-text-centered">
@@ -242,7 +272,7 @@
                                 <p class="subtitle">
                                     Bottom tile
                                 </p>
-                            </article> -->
+                            </article>
                         </div> <!-- end vert 2 tile div-->
                         
                     </div>
