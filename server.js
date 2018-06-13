@@ -125,19 +125,22 @@ app.get('/recipes/:id', function (req, res) {
 
 /////////////////////////
 // view all
-app.get('/allrecipes/', function (req, res) {
-    connection.query("SELECT * FROM recipes;", function (err, data) {
-        if (err) {
-            return res.status(500).end();
-        }
 
-        res.render("allData", {
-            recipes: data
+
+app.get('/database/', function (req, res) {
+    
+    Recipe.findAll({
+        order: [
+            ['score', 'DESC']
+        ]
+    }).then(function (recipe) {
+        console.log('allData', recipe);
+        res.render('allData', {
+            recipes: recipe
         });
     });
+
 });
-
-
 
 
 
