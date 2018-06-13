@@ -67,7 +67,7 @@ app.set('view engine', 'handlebars');
 
 
 ////////////////////////////////////
-// home page recipes
+// adding recipes
 app.get('/', function (req, res) {
     res.render('index');
 });
@@ -88,16 +88,47 @@ app.post('/new-post', function (req, res) {
                 score: 0,
             }).then(function (data) {
                 console.log('data', data);
-                res.redirect('/posts/' + data.dataValues.id);
+                res.redirect('/recipes/' + data.dataValues.id);
             });
         });
-            app.post('/new-post', function (req, res) {
-                res.render('allData');
+
+//////////////////////////        
+// view single recipe        
+app.get('/recipes/:id', function (req, res) {
+                 var id = req.params.id;
+                Recipe.findOne({
+                    where: {
+                        id: req.params.id
+                    }
+                }).then(function (recipe) {
+                    console.log('singleRecipe', recipe);
+                    res.render('singleRecipe', {
+                        recipe: recipe
+                    });
+                });
+            
             });
 
-            app.get('/posts/:id', function (req, res) {
-                res.render('allData');
-            });
+/////////////////////////
+// view all
+app.get('/recipes/:id', function (req, res) {
+    var id = req.params.id;
+   Recipe.findOne({
+       where: {
+           id: req.params.id
+       }
+   }).then(function (recipe) {
+       console.log('singleRecipe', recipe);
+       res.render('singleRecipe', {
+           recipe: recipe
+       });
+   });
+
+});
+
+
+
+
 //////////////////////
 //logins
 
