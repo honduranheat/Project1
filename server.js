@@ -7,11 +7,11 @@ var Recipe = require('./models')['Recipe'];
 
 ///////////////////////////////////
 // passport stuff
-var session  = require('express-session');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var passport = require('passport');
-var flash    = require('connect-flash');
+var flash = require('connect-flash');
 
 var app = express();
 
@@ -23,7 +23,7 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.urlencoded({
-	extended: true
+    extended: true
 }));
 app.use(bodyParser.json());
 
@@ -31,10 +31,10 @@ app.use(bodyParser.json());
 
 // required for passport
 app.use(session({
-	secret: 'vidyapathaisalwaysrunning',
-	resave: true,
-	saveUninitialized: true
- } )); // session secret
+    secret: 'vidyapathaisalwaysrunning',
+    resave: true,
+    saveUninitialized: true
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -43,8 +43,22 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
+var mysql = require("mysql");
 
+var connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "Ezra0827",
+    database: "cheftest1"
+});
 
+connection.connect(function (err) {
+    if (err) {
+        console.error("error connecting: " + err.stack);
+        return;
+    }
+});
 
 // Passport stuff
 ////////////////////////////////////////////////////////
@@ -67,7 +81,7 @@ app.set('view engine', 'handlebars');
 
 
 ////////////////////////////////////
-// home page recipes
+// adding recipes
 app.get('/', function (req, res) {
     res.render('index');
 });
@@ -78,26 +92,56 @@ app.get('/new-post', function (req, res) {
 
 
 app.post('/new-post', function (req, res) {
-            var recipe = req.body;
-            Recipe.create({
-                title: recipe.title,
-                image: recipe.image,
-                ingredients: recipe.ingredients,
-                steps: recipe.steps,
-                healthlabel: recipe.healthlabel,
-                score: 0,
-            }).then(function (data) {
-                console.log('data', data);
-                res.redirect('/posts/' + data.dataValues.id);
-            });
-        });
-            app.post('/new-post', function (req, res) {
-                res.render('allData');
-            });
+    var recipe = req.body;
+    Recipe.create({
+        title: recipe.title,
+        image: recipe.image,
+        ingredients: recipe.ingredients,
+        steps: recipe.steps,
+        healthlabel: recipe.healthlabel,
+        score: 0,
+    }).then(function (data) {
+        console.log('data', data);
+        res.redirect('/recipes/' + data.dataValues.id);
+    });
+});
 
-            app.get('/posts/:id', function (req, res) {
-                res.render('allData');
-            });
+//////////////////////////        
+// view single recipe        
+app.get('/recipes/:id', function (req, res) {
+    var id = req.params.id;
+    Recipe.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (recipe) {
+        console.log('singleRecipe', recipe);
+        res.render('singleRecipe', {
+            recipe: recipe
+        });
+    });
+
+});
+
+/////////////////////////
+// view all
+app.get('/allrecipes/', function (req, res) {
+    connection.query("SELECT * FROM recipes;", function (err, data) {
+        if (err) {
+            return res.status(500).end();
+        }
+
+        res.render("allData", {
+            recipes: data
+        });
+    });
+});
+
+
+
+
+
+
 //////////////////////
 //logins
 
@@ -110,7 +154,7 @@ app.post('/signup', function (req, res) {
     users.create({
         username: users.username,
         userpassword: users.password
-        
+
     }).then(function (data) {
         console.log('data', data);
         res.redirect('/');
@@ -119,10 +163,10 @@ app.post('/signup', function (req, res) {
 
 
 //////////////////////////
-            var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8080;
 
 
 
-            app.listen(PORT, function () {
-                console.log("App listening on PORT " + PORT);
-            });
+app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+});
