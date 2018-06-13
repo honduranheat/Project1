@@ -29,24 +29,8 @@
             <div class="tile is-ancestor">
                 <div class="tile is-parent is-8">
                     <article class="tile is-child notification is-danger">
-                        <div class="content" method="GET" action="/posts/:id">
-                            {{#each recipe}}
-                            <div>
-                                 {{recipe.title}}
-                            </div>
-                            <div>
-                                {{recipe.image}}
-                            </div>
-                            <div>
-                                Ingredients: {{recipe.ingredients}}
-                            </div>
-                            <div>
-                                Steps: {{recipe.steps}}
-                            </div>
-                            <div>
-                                Score: {{recipe.score}}
-                            </div>
-                            {{/each}}
+                        <div class="content" method="GET" action="/recipes/">
+                           
                         </div>
                         <div id="search">
                             <p class="title has-text-centered">
@@ -54,6 +38,23 @@
                             </p>
                             <p class="subtitle has-text-centered">
                                 Top Recipes
+                                 {{#each recipes}}
+                            <div>
+                                 {{this.title}}
+                            </div>
+                            <div>
+                                {{this.image}}
+                            </div>
+                            <div>
+                                Ingredients: {{this.ingredients}}
+                            </div>
+                            <div>
+                                Steps: {{this.steps}}
+                            </div>
+                            <div>
+                                Score: {{this.score}}
+                            </div>
+                            {{/each}}
                             </p>
                             <div class="content">
 

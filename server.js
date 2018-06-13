@@ -43,8 +43,22 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
+var mysql = require("mysql");
 
+var connection = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "Ezra0827",
+  database: "cheftest1"
+});
 
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
+});
 
 // Passport stuff
 ////////////////////////////////////////////////////////
@@ -111,20 +125,17 @@ app.get('/recipes/:id', function (req, res) {
 
 /////////////////////////
 // view all
-app.get('/recipes/:id', function (req, res) {
-    var id = req.params.id;
-   Recipe.findOne({
-       where: {
-           id: req.params.id
-       }
-   }).then(function (recipe) {
-       console.log('singleRecipe', recipe);
-       res.render('singleRecipe', {
-           recipe: recipe
-       });
+app.get('/allrecipes/', function (req, res) {
+    connection.query("SELECT * FROM recipes;", function(err, data) {
+        if (err) {
+          return res.status(500).end();
+        }
+    
+        res.render("allData", { recipes: data });
+      });
    });
 
-});
+
 
 
 
