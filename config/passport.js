@@ -20,8 +20,8 @@ module.exports = function(passport) {
     // passport needs ability to serialize and unserialize users out of session
 
     // used to serialize the user for the session
-    passport.serializeUser(function(user, done) {
-        done(null, user.id);
+    passport.serializeUser(function(id, done) {
+        done(null, id);
     });
 
     // used to deserialize the user
@@ -49,6 +49,8 @@ module.exports = function(passport) {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
             connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows) {
+                console.log('user' + username);
+                console.log('pass' + password);
                 if (err)
                     return done(err);
                 if (rows.length) {
@@ -61,12 +63,17 @@ module.exports = function(passport) {
                         password: bcrypt.hashSync(password, null, null)  // use the generateHash function in our user model
                     };
 
-                    var insertQuery = "INSERT INTO users ( username, password ) values (?,?)";
+                    var insertQuery = "INSERT INTO users ( username, password, createdAt, updatedAt ) values (?,?,?,?)";
 
-                    connection.query(insertQuery,[newUserMysql.username, newUserMysql.password],function(err, rows) {
-                        newUserMysql.id = rows.insertId;
+                    connection.query(insertQuery,[newUserMysql.username, newUserMysql.password, new Date(), new Date()],function(err, rows) {
 
-                        return done(null, newUserMysql);
+                        if (err) {
+                            console.log('HELP ITS AN ERROR: ', err)
+                        }
+                        // newUserMysql.id = rows.insertId;
+                        
+console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" , rows);
+                        return done(null, rows.insertId);
                     });
                 }
             });
