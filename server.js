@@ -46,20 +46,20 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 
 var mysql = require("mysql");
 
-// var connection = mysql.createConnection({
-//     host: "localhost",
-//     port: 3306,
-//     user: "root",
-//     password: "Ezra0827",
-//     database: "cheftest1"
-// });
+var connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "Ezra0827",
+    database: "cheftest1"
+});
 
-// connection.connect(function (err) {
-//     if (err) {
-//         console.error("error connecting: " + err.stack);
-//         return;
-//     }
-// });
+connection.connect(function (err) {
+    if (err) {
+        console.error("error connecting: " + err.stack);
+        return;
+    }
+});
 
 // Passport stuff
 ////////////////////////////////////////////////////////
@@ -88,12 +88,12 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-app.get('/new-post', function (req, res) {
+app.get('/newRecipe', function (req, res) {
     res.render('newRecipe');
 });
 
 
-app.post('/new-post', function (req, res) {
+app.post('/newRecipe', function (req, res) {
     var recipe = req.body;
     Recipe.create({
         title: recipe.title,
@@ -110,7 +110,7 @@ app.post('/new-post', function (req, res) {
 
 //////////////////////////        
 // view single recipe        
-app.get('/recipes/:id', function (req, res) {
+app.get('/singleRecipe/:id', function (req, res) {
     var id = req.params.id;
     Recipe.findOne({
         where: {
@@ -126,16 +126,29 @@ app.get('/recipes/:id', function (req, res) {
 });
 
 /////////////////////////
-// view all
+// 
 
+app.get('/personal', function(req, res) {
+    res.render('personalPage');
+});
+app.get('/search', function(req, res) {
+    res.render('search');
+});
+app.get('/users', function(req, res) {
+    res.render('users');
+});
 
-app.get('/database/', function (req, res) {
+/////////////////////////// 
+// recipe ranking
+app.get('/allrecipes/', function (req, res) {
     
-    Recipe.findAll({
-        // order: [
-        //     ['score', 'DESC']
-        // ]
-    }).then(function (recipe) {
+    Recipe.findAll(
+        {
+        order: [
+            ['score', 'DESC']
+        ]
+    }
+).then(function (recipe) {
         console.log('allData', recipe);
         res.render('allData', {
             recipes: recipe
@@ -143,6 +156,16 @@ app.get('/database/', function (req, res) {
     });
 
 });
+
+// app.get('/allrecipes/', function (req, res) {
+//         connection.query("SELECT * FROM recipes;", function(err, data) {
+//             if (err) {
+//               return res.status(500).end();
+//             }
+        
+//             res.render("allData", { recipes: data });
+//           });
+//         });
 
 
 //////////////////////
