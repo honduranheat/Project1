@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var handlebars = require('express-handlebars');
 var models = require('./models');
 var Recipe = require('./models')['Recipe'];
+var Users = require('./models')['Users'];
 
 
 ///////////////////////////////////
@@ -66,6 +67,7 @@ connection.connect(function (err) {
 
 
 Recipe.sync();
+Users.sync();
 
 app.use(express.static(__dirname + '/public'));
 
