@@ -46,20 +46,20 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 
 var mysql = require("mysql");
 
-var connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "Ezra0827",
-    database: "cheftest1"
-});
+// var connection = mysql.createConnection({
+//     host: "localhost",
+//     port: 3306,
+//     user: "root",
+//     password: "Ezra0827",
+//     database: "cheftest1"
+// });
 
-connection.connect(function (err) {
-    if (err) {
-        console.error("error connecting: " + err.stack);
-        return;
-    }
-});
+// connection.connect(function (err) {
+//     if (err) {
+//         console.error("error connecting: " + err.stack);
+//         return;
+//     }
+// });
 
 // Passport stuff
 ////////////////////////////////////////////////////////
@@ -67,7 +67,7 @@ connection.connect(function (err) {
 
 
 Recipe.sync();
-Users.sync();
+Users.sync({force:true});
 
 app.use(express.static(__dirname + '/public'));
 
@@ -132,9 +132,9 @@ app.get('/recipes/:id', function (req, res) {
 app.get('/database/', function (req, res) {
     
     Recipe.findAll({
-        order: [
-            ['score', 'DESC']
-        ]
+        // order: [
+        //     ['score', 'DESC']
+        // ]
     }).then(function (recipe) {
         console.log('allData', recipe);
         res.render('allData', {
@@ -143,8 +143,6 @@ app.get('/database/', function (req, res) {
     });
 
 });
-
-
 
 
 //////////////////////
