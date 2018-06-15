@@ -16,9 +16,13 @@ module.exports = (sequelize, DataTypes) => {
     score: DataTypes.INTEGER
   }, {});
   Recipe.associate = function(models) {
-    // Recipe.hasOne(models.Steps);
-    // Recipe.hasOne(models.Ingredients);
+    // Recipe.belongsTo(models.Users, {
+    //   // foreignKey: {
+    //   //   allowNull: false
+    //   // }
+    // });
   };
   return Recipe;
 };
 
+ 

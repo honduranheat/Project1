@@ -1,10 +1,9 @@
-// app/routes.js
-// var express = require("express");
-// var bodyParser = require("body-parser");
-// var handlebars = require('express-handlebars');
-// var models = require('../models');
-// var Recipe = require('../models')['Recipe'];
-// var Users = require('../models')['Users'];
+// var models = require('./models');
+// var Recipe = require('./models')['Recipe'];
+// var Users = require('./models')['Users'];
+// // var Ingredients = require('./models')['Ingredients'];
+// // var Steps = require('./models')['Steps'];
+// var Posts = require('./models')['Posts'];
  module.exports = function(app, passport) {
 
 	// =====================================
@@ -104,7 +103,7 @@
             } else {
               req.session.cookie.expires = false;
             }
-        res.redirect('/personal');
+        res.redirect('/personalPage');
     });
 
 	// =====================================
@@ -129,7 +128,7 @@
 	// we will want this protected so you have to be logged in to visit
 	// we will use route middleware to verify this (the isLoggedIn function)
 	app.get('/personal', isLoggedIn, function(req, res) {
-		res.render('profile.ejs', {
+		res.render('personalPage', {
 			user : req.user // get the user out of session and pass to template
 		});
 	});

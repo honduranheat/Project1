@@ -40,30 +40,31 @@
                                         Recipe Name: {{this.title}}
                                     </div>
                                     <div>
-                                        Image <img class="someClass" src="{{this.image}}" />
+                                        Image
+                                        <img class="someClass" src="{{this.image}}" />
                                     </div>
+
                                     <div>
                                         Score: {{this.score}}
+
+                                        <button class="button is-primary" data-id="{{this.id}}" id="upVote" type="submit">
+                                            up
+                                        </button>
+                                        <button class="button is-primary downVote" type="submit">
+                                            down
+                                        </button>
                                     </div>
                                     <div>
-                                        Score: {{this.ing1}} {{this.ing2}} {{this.ing3}} {{this.ing4}} {{this.ing5}}
+                                        Ingredients: {{this.ing1}} {{this.ing2}} {{this.ing3}} {{this.ing4}} {{this.ing5}}
                                     </div>
                                     <div>
-                                        Score: {{this.step1}} {{this.step2}} {{this.step3}} {{this.step4}} {{this.step5}}
-                                        
-                                         {{/each}}
+                                        Score: {{this.step1}} {{this.step2}} {{this.step3}} {{this.step4}} {{this.step5}} {{/each}}
                                         <div>
                                             Ingredients:
-                                            <!-- {{#each ingredients}}
-                                        {{this.ing1}}
-                                        {{this.ing2}}
-                                        {{this.ing3}}
-                                        {{this.ing4}}
-                                        {{this.ing5}}
-                                        {{/each}} -->
+
                                         </div>
                                         <div>
-                                            
+
                                 </p>
                                 <div class="content">
 
@@ -74,8 +75,8 @@
                                 <!--end content-->
                                 </div>
 
-                            </div>
-                            <!-- end search id-->
+                                </div>
+                                <!-- end search id-->
                     </article>
                     <!-- end red tile-->
                     </div>
@@ -114,9 +115,9 @@
                         </article>
                     </div>
                     <!-- end vert 2 tile div-->
+                    </div>
+                    <!--end is-8 vertical -->
                 </div>
-                <!--end is-8 vertical -->
-            </div>
     </section>
     <footer class="footer">
         <div class="container">
@@ -127,6 +128,8 @@
             </div>
         </div>
     </footer>
+
+    <script src='../../src/assets/logic.js' type='text/javascript'></script>
 </body>
 
 </html>

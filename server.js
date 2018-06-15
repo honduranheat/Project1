@@ -6,6 +6,7 @@ var Recipe = require('./models')['Recipe'];
 var Users = require('./models')['Users'];
 var Ingredients = require('./models')['Ingredients'];
 var Steps = require('./models')['Steps'];
+var Posts = require('./models')['Posts'];
 //var Recipe2 = require('./models')['Recipes2'];
 ///////////////////////////////////
 // passport stuff
@@ -45,26 +46,12 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-// var mysql = require("mysql");
 
-// var connection = mysql.createConnection({
-//     host: "localhost",
-//     port: 3306,
-//     user: "root",
-//     password: "Ezra0827",
-//     database: "cheftest1"
-// });
-
-// connection.connect(function (err) {
-//     if (err) {
-//         console.error("error connecting: " + err.stack);
-//         return;
-//     }
-// });
 
 // Passport stuff
 ////////////////////////////////////////////////////////
 //Recipe2.sync();
+Posts.sync();
 Steps.sync();
 Ingredients.sync();
 Recipe.sync();
@@ -72,7 +59,7 @@ Users.sync({
     force: true
 });
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(bodyParser.urlencoded({
     extended: false
@@ -97,14 +84,7 @@ app.get('/newRecipe', function (req, res) {
 
 
 app.post('/newRecipe', function (req, res) {
-    // var recipe = req.body;
-    // Recipe.create({
-    //     title: recipe.title,
-    //     image: recipe.image,
-    //     // ingredients: recipe.ingredients,
-    //     // steps: recipe.steps,
-    //     healthlabel: recipe.healthlabel,
-    //     score: 0,
+    
 
     var recipe = req.body;
     Recipe.create({
@@ -128,47 +108,7 @@ app.post('/newRecipe', function (req, res) {
         res.redirect('/recipes/' + data.dataValues.id);
     });
 
-    // Steps.create({
-    //     s1: recipe.steps1,
-    //     s2: recipe.steps2,
-    //     s3: recipe.steps3,
-    //     s4: recipe.steps4, 
-    //     s5: recipe.steps5,
-    //     s6: recipe.steps6,
-    //     s7: recipe.steps7,
-    //     s8: recipe.steps8,
-    //     s9: recipe.steps9,
-    //     s10: recipe.steps10,
-    //     s11: recipe.steps11,
-    //     s12: recipe.steps12,
-    //     s13: recipe.steps13,
-    //     s14: recipe.steps14,
-    //     s15: recipe.steps15
-    // }).then(function (data) {
-    //     console.log('data', data);
-    //     //res.redirect('/recipes/' + data.dataValues.id);
-    // });
-
-    // Ingredients.create({
-    //     ing1: recipe.ingredients1,
-    //     ing2: recipe.ingredients2,
-    //     ing3: recipe.ingredients3,
-    //     ing4: recipe.ingredients4,
-    //     ing5: recipe.ingredients5,
-    //     ing6: recipe.ingredients6,
-    //     ing7: recipe.ingredients7,
-    //     ing8: recipe.ingredients8,
-    //     ing9: recipe.ingredients9,
-    //     ing10: recipe.ingredients10,
-    //     ing11: recipe.ingredients11,
-    //     ing12: recipe.ingredients12,
-    //     ing13: recipe.ingredients13,
-    //     ing14: recipe.ingredients14,
-    //     ing15: recipe.ingredients15
-    // }).then(function (data) {
-    //     console.log('data', data);
-    //     res.redirect('/recipes/' + data.dataValues.id);
-    // });
+    
 });
 
 // //////////////////////////        
@@ -192,37 +132,6 @@ app.get('/recipes/:id', function (req, res) {
     });
 
 
-    // Steps.findOne({
-    //     where: {
-    //         id: req.params.id
-    //     },
-
-    // }).then(function (result) {
-    //     // console.log('singleRecipe', recipe);
-    //     // res.render('singleRecipe', {
-    //     //     recipe: recipe
-    //     // });
-    //     steps = result;
-    //     // console.log("/////////////////////////////////////////////////////////////////////////////////", steps);
-    // });
-
-    // Ingredients.findOne({
-    //     where: {
-    //         id: req.params.id
-    //     },
-
-    // }).then(function (ingredients) {
-
-    //     //console.log('spacer/////////////////////////////////////////////////////////////////');
-    //     //console.log(ingredients);
-
-    //     //console.log('singleRecipe', ingredients);
-    //     res.render('singleRecipe', {
-    //         ingredients: ingredients,
-    //         recipe: recipe,
-    //         steps: steps
-    //     });
-    // });
 
 });
 
@@ -230,7 +139,7 @@ app.get('/recipes/:id', function (req, res) {
 // // 
 
 app.get('/personal', function (req, res) {
-    res.render('personal');
+    res.render('personalPage');
 });
 app.get('/search', function (req, res) {
     res.render('search');
@@ -238,7 +147,16 @@ app.get('/search', function (req, res) {
 app.get('/users', function (req, res) {
     res.render('users');
 });
+////////////////////////////////////////////
 
+
+app.get("/api/recipes", function(req, res) {
+    // findAll returns all entries for a table when used with no options
+    Recipe.findAll({}).then(function(dbRecipes) {
+      // We have access to the todos as an argument inside of the callback function
+      res.json(dbRecipes);
+    });
+  });
 // /////////////////////////// 
 // // recipe ranking
 
@@ -253,7 +171,7 @@ app.get('/allrecipes/', function (req, res) {
         ]
     }).then(function (recipe) {
         //console.log(Recipe.dataValues);
-        //console.log('//////////////////////////////////////////////////////////////////////////////////////////////////////////');
+       
         //console.log('allData', result);
         //recipe = result;
 
@@ -262,52 +180,7 @@ app.get('/allrecipes/', function (req, res) {
         });
     });
 });
-// app.get('/allrecipes/', function (req, res) {
 
-//     var recipe;
-//     var ingredients;
-
-//     Recipe.findAll({
-//         order: [
-//             ['score', 'DESC']
-//         ]
-//     }).then(function (result) {
-//         //console.log(Recipe.dataValues);
-//         //console.log('//////////////////////////////////////////////////////////////////////////////////////////////////////////');
-//         //console.log('allData', result);
-//         recipe = result;
-
-//         // res.render('allData', {
-//         //     recipes: recipe
-//         // });
-//     });
-
-//     Ingredients.findAll({
-//         order: [
-//             ['score', 'DESC']
-//         ]
-//     }).then(function (result) {
-//         //console.log('allData', result);
-//         ingredients = result;
-//         // res.render('allData', {
-//         //     recipes: recipe
-//         // });
-//     });
-
-//     Steps.findAll({
-//         order: [
-//             ['score', 'DESC']
-//         ]
-//     }).then(function (steps) {
-//         //console.log('allData', result);
-//         console.log(recipe);
-//         res.render('allData', {
-//             ingredients: ingredients,
-//             recipes: recipe,
-//             steps: steps
-//         });
-//     });
-// });
 
 
 // //////////////////////
@@ -328,6 +201,25 @@ app.post('/signup', function (req, res) {
         res.redirect('/');
     });
 });
+
+
+app.put('/allrecipes', function (req, res) {
+    Post.findById(req.params.id).exec(function (err, post) {
+      post.upVotes.push(req.user._id)
+      post.voteScore = post.voteTotal + 1
+      post.save();
+      res.status(200);
+    })
+  })
+  
+  app.put('/allrecipes', function (req, res) {
+    Post.findById(req.params.id).exec(function (err, post) {
+      post.downVotes.push(req.user._id)
+      post.voteScore = post.voteTotal - 1
+      post.save();
+      res.status(200);
+    })
+  })
 
 
 //////////////////////////
