@@ -35,52 +35,108 @@
                                 <p class="title has-text-centered">
                                     Recipe Database
                                 </p>
-                                <p class="subtitle has-text-centered">
-                                    Top Recipes {{#each recipes}}
-                                    <div>
-                                        Recipe Name: {{this.title}}
-                                    </div>
-                                    <div>
-                                        Image
-                                        <img class="someClass" src="{{this.image}}" />
-                                    </div>
-
-                                    <div>
+                                <h1 class="content has-text-centered">
+                                    Top Recipes
+                                </h1>
+                                <h2>
+                                    {{#each recipes}}
+                                </h2>
+                                <div class="content has-text-centered">
+                                    <h1>
+                                        {{this.title}}
+                                    </h1>
+                                </div>
+                                <div>
+                                    <img class="someClass" src="{{this.image}}" />
+                                </div>
+                                <div class="content has-text-centered">
+                                    <p>
                                         Score: {{this.score}}
-
-
-                                        <form data-id="{{this.title}}">
-                                            <button class="button is-primary" id="upVote" type="submit">
-                                                up
-                                            </button>
-                                        </form>
-
-                                        </form>
-                                        <button class="button is-primary downVote" type="submit">
-                                            down
+                                    </p>
+                                    <form data-id="{{this.title}}">
+                                        <button class="button is-primary" id="upVote" type="submit">
+                                            up
                                         </button>
+                                    </form>
 
-                                    </div>
-                                    <div>
-                                        Ingredients: {{this.ing1}} {{this.ing2}} {{this.ing3}} {{this.ing4}} {{this.ing5}}
-                                    </div>
-                                    <div>
-                                        Score: {{this.step1}} {{this.step2}} {{this.step3}} {{this.step4}} {{this.step5}} {{/each}}
+                                    </form>
+                                    <button class="button is-primary downVote" type="submit">
+                                        down
+                                    </button>
+                                </div>
+                                <div class="content has-text-centered">
+
+                                    <h1> 
+                                        Ingredients:
+                                        </h1>
+                                            <h2>
+                                                {{this.ing1}}
+                                                <br> {{this.ing2}}
+                                                <br> {{this.ing3}}
+                                                <br> {{this.ing4}}
+                                                <br> {{this.ing5}}
+                                            </h2>
+                                </div>
+                                <div class="content has-text-centered">
+                                    <h1>
+                                        <h1>Steps: </h1>
+                                        <h2>
+                                            {{this.step1}}
+                                            <br> {{this.step2}}
+                                            <br> {{this.step3}}
+                                            <br> {{this.step4}}
+                                            <br> {{this.step5}}
+
+                                        </h2>
+                                </div>
+                                {{/each}}
+
+
+                                <div class="content ">
+
+                                    <p class="subtitle has-text-centered">
+                                        Top Recipes {{#each recipes}}
                                         <div>
-                                            Ingredients:
+                                            Recipe Name: {{this.title}}
+                                        </div>
+                                        <div>
+                                            Image
+                                            <img class="someClass" src="{{this.image}}" />
+                                        </div>
+
+                                        <div>
+                                            Score: {{this.score}}
+
+
+                                            <form data-id="{{this.title}}">
+                                                <button class="button is-primary" id="upVote" type="submit">
+                                                    up
+                                                </button>
+                                            </form>
+
+                                            </form>
+                                            <button class="button is-primary downVote" type="submit">
+                                                down
+                                            </button>
 
                                         </div>
                                         <div>
+                                            Ingredients: {{this.ing1}} {{this.ing2}} {{this.ing3}} {{this.ing4}} {{this.ing5}}
+                                        </div>
+                                        <div>
+                                            Score: {{this.step1}} {{this.step2}} {{this.step3}} {{this.step4}} {{this.step5}} {{/each}}
+                                            <div>
+                                                Ingredients:
 
-                                </p>
-                                <div class="content">
+                                            </div>
+                                            <div>
+
+                                    </p>
 
 
-
-
-                                </div>
-                                <!--end content-->
-                                </div>
+                                    </div>
+                                    <!--end content-->
+                                    </div>
 
                                 </div>
                                 <!-- end search id-->
@@ -145,7 +201,7 @@
             console.log('/////////////////////////////////////////////////////////////////////////////////////');
             console.log(thisid);
             console.log('hti hit hit');
-            
+
 
         });
 

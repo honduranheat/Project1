@@ -89,6 +89,15 @@ app.get('/newRecipe', function (req, res) {
     res.render('newRecipe');
 });
 
+app.get('/personal', function (req, res) {
+    res.render('personalPage');
+});
+app.get('/search', function (req, res) {
+    res.render('search');
+});
+app.get('/users', function (req, res) {
+    res.render('users');
+});
 
 app.post('/newRecipe', function (req, res) {
     
@@ -145,15 +154,7 @@ app.get('/recipes/:id', function (req, res) {
 /////////////////////////
 // 
 
-app.get('/personal', function (req, res) {
-    res.render('personalPage');
-});
-app.get('/search', function (req, res) {
-    res.render('search');
-});
-app.get('/users', function (req, res) {
-    res.render('users');
-});
+
 //////////////////////////////////////////
 
 
