@@ -26,39 +26,55 @@
     </div>
     <section class="section">
         <div class="container">
-                <div class="tile is-vertical">
-                        <div class="tile is-parent">
-                            <article class="tile is-child notification is-danger">
-                                <div class = "content">
-                                    <h1>{{recipe.title}}</h1>
+            <div class="tile is-vertical">
+                <div class="tile is-parent">
+                    <article class="tile is-child notification is-danger">
+                        <div class="content has-text-centered">
+                            <h1>{{recipe.title}}</h1>
 
-                                    <img class="someClass" src="{{recipe.image}}" />
-        
-                                    <h2>Ingredients: {{recipe.ing1}} {{recipe.ing2}} {{recipe.ing3}} {{recipe.ing4}} {{recipe.ing5}}
-                                        {{recipe.ing6}} {{recipe.ing7}} {{recipe.ing8}} {{recipe.ing9}} {{recipe.ing10}}
-        
-                                    </h2>
-                                    <h2>Steps: {{recipe.step1}} {{recipe.step2}} {{recipe.step3}} {{recipe.step4}} {{recipe.step5}}
-        
-        
-                                    </h2>
-                                    <h2>Score: {{recipe.score}}</h2>  
-                                </div>
-                            </article> <!-- end red tile-->
-                            <div class="tile is-parent is-vertical">
-                                <article class="tile is-child notification is-primary">
-                                    <h1 class="title has-text-centered">
-                                        Submitted Recipes
-                                    </h1>
-                                </article>
-                                <article class="tile is-child notification is-warning">
-                                    <p class="title has-text-centered">
-                                        Top Recipe
-                                    </p>
-                                    <p class="subtitle">
-                                    </p>
-                                </article>
-                                <!-- <article class="tile is-child notification is-primary">
+                            <img class="someClass" src="{{recipe.image}}" />
+                            <h1>
+                                Ingredients:
+                            </h1>
+                            <h2>
+                                {{recipe.ing1}}
+                                <br> {{recipe.ing2}}
+                                <br> {{recipe.ing3}}
+                                <br> {{recipe.ing4}}
+                                <br> {{recipe.ing5}} 
+
+                            </h2>
+
+                            <h1>
+                                Steps:
+                                </h1>
+                            <h2> 
+                                {{recipe.step1}} <br>
+                                {{recipe.step2}} <br>
+                                {{recipe.step3}} <br>
+                                {{recipe.step4}} <br>
+                                {{recipe.step5}}
+
+
+                            </h2>
+                            <h2>Score: {{recipe.score}}</h2>
+                        </div>
+                    </article>
+                    <!-- end red tile-->
+                    <div class="tile is-parent is-vertical">
+                        <article class="tile is-child notification is-primary">
+                            <h1 class="title has-text-centered">
+                                Submitted Recipes
+                            </h1>
+                        </article>
+                        <article class="tile is-child notification is-warning">
+                            <p class="title has-text-centered">
+                                Top Recipe
+                            </p>
+                            <p class="subtitle">
+                            </p>
+                        </article>
+                        <!-- <article class="tile is-child notification is-primary">
                                     <p class="title">
                                         How many tiles for whatever purpose
                                     </p>
@@ -74,11 +90,13 @@
                                         Bottom tile
                                     </p>
                                 </article> -->
-                            </div> <!-- end vert 2 tile div-->
-                        </div>
-                    </div> <!--end is-8 vertical -->
+                    </div>
+                    <!-- end vert 2 tile div-->
+                </div>
             </div>
-            </section>
+            <!--end is-8 vertical -->
+        </div>
+    </section>
 
     <!-- <section class="section">
         <div class="container">
@@ -86,7 +104,7 @@
                 <div class="tile is-parent">
                     <article class="tile is-child notification is-danger">
                         <div class="content"> -->
-                            <!-- <h1>{{recipe.title}}</h1>
+    <!-- <h1>{{recipe.title}}</h1>
 
                             <img class="someClass" src="{{recipe.image}}" />
 
@@ -102,8 +120,8 @@
                         </div>
                     </article>
                     <!-- end red tile-->
-                    <!-- <div class="tile is-parent is-vertical"> -->
-                        <!-- <article class="tile is-child notification is-primary">
+    <!-- <div class="tile is-parent is-vertical"> -->
+    <!-- <article class="tile is-child notification is-primary">
                                 <p class="title has-text-centered">
                                     Recipe Search Results
                                 </p>
@@ -117,7 +135,7 @@
                                     <div id='recipeSteps'></div>
                                 </div>
                             </article> -->
-                        <!-- <article class="tile is-child notification is-warning">
+    <!-- <article class="tile is-child notification is-warning">
                                 <p class="title">
                                     Reviews could go here ? 
                                 </p>
@@ -141,13 +159,13 @@
                                     Bottom tile
                                 </p>
                             </article> -->
-                    <!-- </div>
+    <!-- </div>
                       -->
 
-                </div>
-            </div>
-            <!--end is-8 vertical -->
-        </div>
+    </div>
+    </div>
+    <!--end is-8 vertical -->
+    </div>
     </section>
     <footer class="footer">
         <div class="container">
