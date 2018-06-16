@@ -18,6 +18,7 @@
         crossorigin="anonymous"></script>
 
     <!-- Stylesheet tags -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -47,12 +48,18 @@
                                     <div>
                                         Score: {{this.score}}
 
-                                        <button class="button is-primary" data-id="{{this.id}}" id="upVote" type="submit">
-                                            up
-                                        </button>
+
+                                        <form data-id="{{this.title}}">
+                                            <button class="button is-primary" id="upVote" type="submit">
+                                                up
+                                            </button>
+                                        </form>
+
+                                        </form>
                                         <button class="button is-primary downVote" type="submit">
                                             down
                                         </button>
+
                                     </div>
                                     <div>
                                         Ingredients: {{this.ing1}} {{this.ing2}} {{this.ing3}} {{this.ing4}} {{this.ing5}}
@@ -129,7 +136,23 @@
         </div>
     </footer>
 
-    <script src='../../src/assets/logic.js' type='text/javascript'></script>
+    <script type="text/javascript">
+
+
+        $(document).on('click', '#upVote', function () {
+
+            var thisid = $(this).data('title');
+            console.log('/////////////////////////////////////////////////////////////////////////////////////');
+            console.log(thisid);
+            console.log('hti hit hit');
+            
+
+        });
+
+
+    </script>
+
+
 </body>
 
 </html>

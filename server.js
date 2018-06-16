@@ -1,4 +1,5 @@
 var express = require("express");
+var path = require('path');
 var bodyParser = require("body-parser");
 var handlebars = require('express-handlebars');
 var models = require('./models');
@@ -59,7 +60,7 @@ Users.sync({
     force: true
 });
 
-app.use(express.static(path.join(__dirname, "public")));
+express.static(path.join(__dirname, 'public/assets/js/logic.js'));
 
 app.use(bodyParser.urlencoded({
     extended: false
@@ -70,6 +71,11 @@ app.engine('handlebars', handlebars({
 }));
 
 app.set('view engine', 'handlebars');
+
+
+
+
+
 
 
 ////////////////////////////////////
@@ -160,6 +166,8 @@ app.get("/api/recipes", function(req, res) {
 // /////////////////////////// 
 // // recipe ranking
 
+
+
 app.get('/allrecipes/', function (req, res) {
 
     // var recipe;
@@ -180,6 +188,9 @@ app.get('/allrecipes/', function (req, res) {
         });
     });
 });
+
+
+
 
 
 
